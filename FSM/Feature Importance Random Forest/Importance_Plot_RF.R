@@ -1,0 +1,10 @@
+library(ROSE)
+library(ggplot2)
+library(cowplot)
+library(randomForest)
+set.seed(4543)
+dataset<-read.csv(file.choose(),header=TRUE) #read train dataset
+rffit1 <- randomForest(Flood_Inventory ~.,data=dataset, ntree=500, keep.forest=FALSE, importance=TRUE)
+print(rffit1)
+importance(rffit1)
+varImpPlot(rffit1)
